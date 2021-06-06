@@ -76,4 +76,4 @@ def serve_pil_image(pil_img, new_size, format):
 	return send_file(dump, mimetype='image/jpeg', attachment_filename='reduced_image_'+new_size+'.'+format.lower(), as_attachment=True)
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	app.run()
