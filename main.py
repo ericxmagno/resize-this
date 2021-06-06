@@ -1,14 +1,16 @@
 import os
 import sys
-from flask.ctx import after_this_request
-
-from flask.wrappers import Response
-from io import BytesIO
-from app import app
 import urllib.request
-from flask import Flask, flash, request, redirect, url_for, render_template, send_file
-from werkzeug.utils import secure_filename
+from io import BytesIO
+
+from flask import (Flask, flash, redirect, render_template, request, send_file,
+                   url_for)
+from flask.ctx import after_this_request
+from flask.wrappers import Response
 from PIL import Image
+from werkzeug.utils import secure_filename
+
+from app import app
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
