@@ -1,0 +1,52 @@
+<!doctype html>
+<title>Python Flask File Upload Example</title>
+<style>
+	img {
+		max-width: 100%;
+		height: auto;
+		width: auto\9; /* ie8 */
+	}
+</style>
+<h2>Select a file to upload</h2>
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p>
+{% if filename %}
+	<div style="max-width:500px;">
+		<img src="{{ url_for('display_image', filename=filename) }}">
+	</div>
+{% endif %}
+<form method="post" action="/" enctype="multipart/form-data">
+    <dl>
+		<p>
+			<input type="file" name="file" autocomplete="off" required>
+		</p>
+    </dl>
+    <p>
+		<input type="submit" value="Submit">
+	</p>
+</form>
+{% if filename %}
+<form method="post" action="/download" enctype="multipart/form-data">
+	<p>Please select your preferred reduced image size:</p>
+	<div>
+	  <input type="radio" id="radio1" name="imgSize" value="25p" checked>
+	  <label for="radio1">25% original</label>
+  
+	  <input type="radio" id="radio2" name="imgSize" value="50p">
+	  <label for="radio2">50% original</label>
+	</div>
+	<input type="hidden" name="file" value="{{ filename }}"/>
+	<p>
+		<input type="submit" value="Download">
+	</p>
+  </form>
+{% endif %}
